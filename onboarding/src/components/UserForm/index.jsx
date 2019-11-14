@@ -1,6 +1,7 @@
 import React from "react";
 import { withFormik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
+import axios from "axios";
 
 const UserForm = props => {
 	console.log(props);
@@ -56,7 +57,23 @@ const UserFormWithFormik = withFormik({
 			.min(8, "At least 8 chars")
 			.required("Please enter your password"),
 		terms: Yup.boolean().oneOf([true], "Must Accept Terms")
-	})
+	}),
+
+	handleSubmit(values, tools) {
+		console.log("submited");
+		console.log(values, tools);
+
+		axios
+			.post("https://reqres.in/api/users", values)
+			.then(res => {
+				console.log(res.data);
+				tools.props.setUsers([...tools.props.users, res.data]);
+				tools.resetForm();
+			})
+			.catch(err => {
+				console.log(err);
+			});
+	}
 })(UserForm);
 
 export default UserFormWithFormik;
