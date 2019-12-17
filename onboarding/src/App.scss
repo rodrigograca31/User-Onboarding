@@ -1,0 +1,29 @@
+html,
+.App {
+    background: #282c34;
+    color: #09d3ac;
+}
+
+
+* hr {
+    border: 1px solid;
+}
+
+.alert {
+    margin: 15px 0;
+}
+
+.users {
+    p {
+        padding: 20px;
+        margin: 0;
+    }
+
+    p:nth-child(odd) {
+        background: rgba(255, 255, 255, 0.1);
+    }
+
+    p:nth-child(even) {
+        border-top: 1px solid;
+    }
+}
